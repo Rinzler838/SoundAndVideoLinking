@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.widget.*;
 import android.view.View;
 import android.content.Intent;
+import android.graphics.Color;
 
 public class SoundActivity extends Activity implements Runnable
 {
@@ -18,6 +19,7 @@ public class SoundActivity extends Activity implements Runnable
     private MediaPlayer soundPlayer;
     private SeekBar soundSeekBar;
     private Thread soundThread;
+    private RelativeLayout background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +33,7 @@ public class SoundActivity extends Activity implements Runnable
         soundSeekBar = (SeekBar) findViewById(R.id.soundSeekBar);
         videoButton = (Button) findViewById(R.id.videoButton);
         soundPlayer = MediaPlayer.create(this.getBaseContext(), R.raw.tsfh);
+        background = (RelativeLayout) findViewById(R.id.background);
 
         setupListeners();
 
@@ -46,23 +49,31 @@ public class SoundActivity extends Activity implements Runnable
             public void onClick(View v)
             {
                 soundPlayer.start();
+
+                changeBackgroundColor();
             }
         });
 
         pauseButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void OnClick(View v)
+            public void onClick(View v)
             {
                 soundPlayer.pause();
+
+                changeBackgroundColor();
             }
         });
 
-        stopButton.setOnClickListener(new View.OnClickListener() {
+        stopButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View currentView) {
+            public void onClick(View currentView)
+            {
                 soundPlayer.stop();
                 soundPlayer = MediaPlayer.create(getBaseContext(), R.raw.tsfh);
+
+                changeBackgroundColor();
             }
         });
 
@@ -77,18 +88,23 @@ public class SoundActivity extends Activity implements Runnable
 
         });
 
-        soundSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        soundSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+        {
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar)
+            {
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+            {
+                if (fromUser)
+                {
                     soundPlayer.seekTo(progress);
                 }
             }
@@ -119,6 +135,21 @@ public class SoundActivity extends Activity implements Runnable
             }
             soundSeekBar.setProgress(currentPosition);
         }
+    }
+
+    private void changeBackgroundColor()
+    {
+        background.setBackgroundColor(Color.rgb(255, 255, 255));
+
+        int redColor;
+        int greenColor;
+        int blueColor;
+
+        redColor = (int) (Math.random() * 256);
+        greenColor = (int) (Math.random() * 256);
+        blueColor = (int) (Math.random() * 256);
+
+        background.setBackgroundColor(Color.rgb(redColor, greenColor, blueColor));
     }
 
     @Override
