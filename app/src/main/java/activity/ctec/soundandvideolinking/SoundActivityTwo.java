@@ -28,10 +28,10 @@ public class SoundActivityTwo extends Activity implements Runnable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound_activity_two);
 
-        pausePlayButtonTwo = (Button) findViewById(R.id.pausePlayButton);
-        stopButtonTwo = (Button) findViewById(R.id.stopButton);
+        pausePlayButtonTwo = (Button) findViewById(R.id.pausePlayButtonTwo);
+        stopButtonTwo = (Button) findViewById(R.id.stopButtonTwo);
         backButtonTwo = (Button) findViewById(R.id.backButtonTwo);
-        soundSeekBarTwo = (SeekBar) findViewById(R.id.soundSeekBar);
+        soundSeekBarTwo = (SeekBar) findViewById(R.id.soundSeekBarTwo);
         videoButtonTwo = (Button) findViewById(R.id.videoButton);
         soundPlayerTwo = MediaPlayer.create(this.getBaseContext(), R.raw.tsfhtwo);
         pause = getString(R.string.pause);

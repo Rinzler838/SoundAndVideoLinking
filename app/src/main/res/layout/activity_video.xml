@@ -17,18 +17,18 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
-    <VideoView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/videoView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/homeButton"/>
-
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:rating="5"/>
+
+    <VideoView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/videoView"
+        android:layout_below="@+id/homeButton"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

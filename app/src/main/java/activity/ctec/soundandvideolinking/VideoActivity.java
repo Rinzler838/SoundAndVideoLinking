@@ -16,7 +16,6 @@ public class VideoActivity extends Activity
     private Button returnButton;
     private MediaController myVideoController;
     private Uri videoLocation;
-    private RelativeLayout backgroundTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
