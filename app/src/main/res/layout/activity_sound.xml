@@ -5,51 +5,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".SoundActivity"
     android:id="@+id/background"
-    android:background="#ffffff">
+    android:background="#010101">
 
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/soundSeekBar"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/pausePlayButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/playButton"
-        android:layout_below="@+id/soundSeekBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="@string/play"
+        android:id="@+id/pausePlayButton"
+        android:layout_above="@+id/videoButton"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pause"
-        android:id="@+id/pauseButton"
-        android:layout_below="@+id/soundSeekBar"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
         android:id="@+id/stopButton"
+        android:text="STOP"
         android:layout_below="@+id/soundSeekBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toLeftOf="@+id/pausePlayButton"
+        android:layout_toStartOf="@+id/pausePlayButton"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/video_button"
         android:id="@+id/videoButton"
-        android:layout_below="@+id/pauseButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tsfhPic"
+        android:src="@drawable/tsfhpic"
+        android:layout_above="@+id/soundSeekBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=">>"
+        android:id="@+id/nextButton"
+        android:layout_above="@+id/videoButton"
+        android:layout_toRightOf="@+id/pausePlayButton"
+        android:layout_toEndOf="@+id/pausePlayButton"/>
 
 </RelativeLayout>

@@ -20,6 +20,10 @@
             android:name=".VideoActivity"
             android:label="@string/title_activity_video" >
         </activity>
+        <activity
+            android:name=".SoundActivityTwo"
+            android:label="@string/title_activity_sound_activity_two" >
+        </activity>
     </application>
 
 </manifest>

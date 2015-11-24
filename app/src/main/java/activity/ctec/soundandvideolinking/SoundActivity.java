@@ -1,25 +1,26 @@
 package activity.ctec.soundandvideolinking;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.media.MediaPlayer;
-import android.widget.*;
 import android.view.View;
-import android.content.Intent;
-import android.graphics.Color;
+import android.widget.Button;
+import android.widget.SeekBar;
 
 public class SoundActivity extends Activity implements Runnable
 {
-    private Button playButton;
-    private Button pauseButton;
+    private Button pausePlayButton;
     private Button stopButton;
     private Button videoButton;
-    private MediaPlayer soundPlayer;
+    private Button nextButton;
+    private MediaPlayer soundPlayerOne;
     private SeekBar soundSeekBar;
     private Thread soundThread;
-    private RelativeLayout background;
+    private String pause;
+    private String play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,13 +28,15 @@ public class SoundActivity extends Activity implements Runnable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound);
 
-        playButton = (Button) findViewById(R.id.playButton);
-        pauseButton = (Button) findViewById(R.id.pauseButton);
+        pausePlayButton = (Button) findViewById(R.id.pausePlayButton);
         stopButton = (Button) findViewById(R.id.stopButton);
+        nextButton = (Button) findViewById(R.id.nextButton);
         soundSeekBar = (SeekBar) findViewById(R.id.soundSeekBar);
         videoButton = (Button) findViewById(R.id.videoButton);
-        soundPlayer = MediaPlayer.create(this.getBaseContext(), R.raw.tsfh);
-        background = (RelativeLayout) findViewById(R.id.background);
+        soundPlayerOne = MediaPlayer.create(this.getBaseContext(), R.raw.tsfh);
+        pause = getString(R.string.pause);
+        play = getString(R.string.play);
+
 
         setupListeners();
 
@@ -43,25 +46,24 @@ public class SoundActivity extends Activity implements Runnable
 
     private void setupListeners()
     {
-        playButton.setOnClickListener(new View.OnClickListener()
+
+        pausePlayButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                soundPlayer.start();
+                if (pausePlayButton.getText().toString().equals(play))
+                {
+                    soundPlayerOne.start();
+                    pausePlayButton.setText("PAUSE");
+                }
 
-                changeBackgroundColor();
-            }
-        });
+                else
+                {
+                    soundPlayerOne.pause();
+                    pausePlayButton.setText(play);
+                }
 
-        pauseButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                soundPlayer.pause();
-
-                changeBackgroundColor();
             }
         });
 
@@ -70,10 +72,18 @@ public class SoundActivity extends Activity implements Runnable
             @Override
             public void onClick(View currentView)
             {
-                soundPlayer.stop();
-                soundPlayer = MediaPlayer.create(getBaseContext(), R.raw.tsfh);
+                soundPlayerOne.stop();
+                soundPlayerOne = MediaPlayer.create(getBaseContext(), R.raw.tsfh);
+            }
+        });
 
-                changeBackgroundColor();
+        nextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View currentView)
+            {
+                Intent myIntent = new Intent(currentView.getContext(), SoundActivityTwo.class);
+                startActivityForResult(myIntent, 0);
             }
         });
 
@@ -105,7 +115,7 @@ public class SoundActivity extends Activity implements Runnable
             {
                 if (fromUser)
                 {
-                    soundPlayer.seekTo(progress);
+                    soundPlayerOne.seekTo(progress);
                 }
             }
         });
@@ -115,15 +125,15 @@ public class SoundActivity extends Activity implements Runnable
     public void run()
     {
         int currentPosition = 0;
-        int soundTotal = soundPlayer.getDuration();
+        int soundTotal = soundPlayerOne.getDuration();
         soundSeekBar.setMax(soundTotal);
 
-        while (soundPlayer != null && currentPosition < soundTotal)
+        while (soundPlayerOne != null && currentPosition < soundTotal)
         {
             try
             {
                 Thread.sleep(300);
-                currentPosition = soundPlayer.getCurrentPosition();
+                currentPosition = soundPlayerOne.getCurrentPosition();
             }
             catch (InterruptedException soundException)
             {
@@ -135,21 +145,6 @@ public class SoundActivity extends Activity implements Runnable
             }
             soundSeekBar.setProgress(currentPosition);
         }
-    }
-
-    private void changeBackgroundColor()
-    {
-        background.setBackgroundColor(Color.rgb(255, 255, 255));
-
-        int redColor;
-        int greenColor;
-        int blueColor;
-
-        redColor = (int) (Math.random() * 256);
-        greenColor = (int) (Math.random() * 256);
-        blueColor = (int) (Math.random() * 256);
-
-        background.setBackgroundColor(Color.rgb(redColor, greenColor, blueColor));
     }
 
     @Override
