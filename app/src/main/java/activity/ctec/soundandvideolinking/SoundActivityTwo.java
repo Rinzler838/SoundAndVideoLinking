@@ -26,7 +26,7 @@ public class SoundActivityTwo extends Activity implements Runnable
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sound);
+        setContentView(R.layout.activity_sound_activity_two);
 
         pausePlayButtonTwo = (Button) findViewById(R.id.pausePlayButton);
         stopButtonTwo = (Button) findViewById(R.id.stopButton);
@@ -54,7 +54,7 @@ public class SoundActivityTwo extends Activity implements Runnable
                 if (pausePlayButtonTwo.getText().toString().equals(play))
                 {
                     soundPlayerTwo.start();
-                    pausePlayButtonTwo.setText("PAUSE");
+                    pausePlayButtonTwo.setText(pause);
                 } else
                 {
                     soundPlayerTwo.pause();

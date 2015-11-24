@@ -55,7 +55,7 @@ public class SoundActivity extends Activity implements Runnable
                 if (pausePlayButton.getText().toString().equals(play))
                 {
                     soundPlayerOne.start();
-                    pausePlayButton.setText("PAUSE");
+                    pausePlayButton.setText(pause);
                 }
 
                 else
