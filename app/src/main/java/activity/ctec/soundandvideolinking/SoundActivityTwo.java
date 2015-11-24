@@ -43,9 +43,14 @@ public class SoundActivityTwo extends Activity implements Runnable
         soundThread.start();
     }
 
+    /**
+     * Listeners tell program what to execute when buttons are pressed.
+     */
     private void setupListeners()
     {
-
+        /**
+         * Pauses and plays music when button is pressed.
+         */
         pausePlayButtonTwo.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -64,6 +69,9 @@ public class SoundActivityTwo extends Activity implements Runnable
             }
         });
 
+        /**
+         * Stops music and resets seek bar when button is pressed.
+         */
         stopButtonTwo.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -74,6 +82,9 @@ public class SoundActivityTwo extends Activity implements Runnable
             }
         });
 
+        /**
+         * Opens other music screen when button is pressed.
+         */
         backButtonTwo.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -84,7 +95,9 @@ public class SoundActivityTwo extends Activity implements Runnable
             }
         });
 
-
+        /**
+         * Opens video screen when button is pressed.
+         */
         videoButtonTwo.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -96,6 +109,9 @@ public class SoundActivityTwo extends Activity implements Runnable
 
         });
 
+        /**
+         * Allows seek bar to track progress of song and navigate song when moved.
+         */
         soundSeekBarTwo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             @Override
@@ -119,6 +135,9 @@ public class SoundActivityTwo extends Activity implements Runnable
         });
     }
 
+    /**
+     * Complex method that tracks song progress and lets you navigate the track.
+     */
     @Override
     public void run()
     {
@@ -145,6 +164,11 @@ public class SoundActivityTwo extends Activity implements Runnable
         }
     }
 
+    /**
+     * Inflates Menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

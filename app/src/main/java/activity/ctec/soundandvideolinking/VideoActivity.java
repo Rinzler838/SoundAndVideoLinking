@@ -26,9 +26,12 @@ public class VideoActivity extends Activity
         myPlayer = (VideoView) findViewById(R.id.videoView);
         returnButton = (Button) findViewById(R.id.homeButton);
 
+        /**
+         * Sets up media and locates video file to be played.
+         */
         videoLocation = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.ftw);
         myVideoController = new MediaController(this);
-        //Prepare the video
+
         setupMedia();
         setupListeners();
     }
@@ -41,6 +44,9 @@ public class VideoActivity extends Activity
 
     private void setupListeners()
     {
+        /**
+         * Returns to music screen when button is pressed.
+         */
         returnButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View currentView)
@@ -53,7 +59,11 @@ public class VideoActivity extends Activity
             }
         });
     }
-
+    /**
+     * Inflates Menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
